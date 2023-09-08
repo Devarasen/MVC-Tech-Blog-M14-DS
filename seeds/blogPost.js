@@ -5,6 +5,7 @@ const blogPostData = [
     post_title: "The Importance of Web Optimization",
     contents:
       "Web optimization is crucial for improving website performance, enhancing user experience, and increasing site traffic. It involves various techniques, from content optimization and SEO practices to server-side tweaks...",
+    author_name: "Lernantino",
   },
   {
     post_title: "Top 5 Web Development Trends in 2023",
