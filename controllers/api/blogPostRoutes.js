@@ -25,4 +25,20 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/addNew", async (req, res) => {
+  try {
+    console.log("Incoming Data:", req.body);
+    const { post_title, contents } = req.body;
+
+    const blogPostData = await BlogPost.create({
+      post_title,
+      contents,
+    });
+    console.log("Entered BlogPost Data:", blogPostData);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(400).json(error);
+  }
+});
+
 module.exports = router;

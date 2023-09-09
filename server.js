@@ -7,12 +7,15 @@ const routes = require("./controllers");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./config/connection");
 
+const helpers = require("./utils/helpers");
+
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Handlebars setup
 const hbs = exphbs.create({
+  helpers,
   defaultLayout: "main", // This assumes you have a main.handlebars file in your views/layouts folder
   extname: ".handlebars", // This can be .hbs or .handlebars, depending on your preference.
 });

@@ -6,9 +6,7 @@ router.use("/", homeRoutes);
 router.use("/api", apiRoutes);
 
 router.use((req, res) => {
-  res.send(
-    "<h1>Oops! You've entered the barking-mad zone for lost dogs. 🐕</h1><p><Feeling a bit ruff about this? Maybe it's time to leash up and <a href='javascript:history.back()'>go back</a> to the right path!</p>"
-  );
+  res.send("<h1>Oops! Wrong Route </h1>");
 });
 
 module.exports = router;

@@ -1,11 +1,13 @@
 {{#each blogPostData}}
-<div class="card my-5">
-    <h5 class="card-header">{{post_title}}</h5>
-    <p5 class="card-header">Posted by {{user.name}} on {{created_date}}</p5>
-    <div class="card-body">
-        {{!-- <h5 class="card-title">Special title treatment</h5> --}}
-        <p class="card-text">{{contents}}</p>
-        {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+<a href="/blogPost/{{id}}" class="card-link py-5">
+    <div class="card" href="/blogPost">
+        <h5 class="card-header">{{post_title}}</h5>
+        <p5 class="card-header">Posted by {{user.name}} on {{format_date created_date}}</p5>
+        <div class="card-body">
+            {{!-- <h5 class="card-title">Special title treatment</h5> --}}
+            <p class="card-text">{{contents}}</p>
+            {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+        </div>
     </div>
-</div>
+</a>
 {{/each}}
