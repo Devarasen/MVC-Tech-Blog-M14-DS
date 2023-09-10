@@ -1,9 +1,11 @@
-<h1 class="p-4">Welcome {{name}}</h1>
+<div>
+    <h1>Welcome {{name}}</h1>
+</div>
 
 {{#each blogPosts}}
-<div class="card my-5" id="togglePosts">
+<div class="card my-5 togglePosts">
     <h5 class="card-header">{{this.post_title}}</h5>
-    <p class="card-header">Posted by {{name}} on {{format_date this.created_date}}</p>
+    <p class="card-header">Posted by {{../name}} on {{format_date this.created_date}}</p>
     <div class="card-body">
         {{!-- <h5 class="card-title">Special title treatment</h5> --}}
         <p class="card-text">{{this.contents}}</p>
@@ -11,6 +13,23 @@
     </div>
 </div>
 {{/each}}
+
+<div class="modal fade" id="errorMessageModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Error</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                Title/Contents missing. Unable to post.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="container mt-5 d-none" id="myForm">
@@ -32,17 +51,25 @@
                             <textarea type="text" class="form-control" id="content" placeholder="Enter content"
                                 name="content" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" href="/dashboard">Create Post</button>
+                        <button type="submit" class="btn btn-secondary" href="/dashboard">Create Post</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/js/createPost.js"></script>
+
 </div>
 
 
-<div class="fixed-bottom d-flex justify-content-center align-items-end mb-5 pb-5">
-    <button id="toggleForm" class="btn btn-primary btn-lg">+ New Post</button>
-    <script src="/js/newPostButton.js"></script>
+<div class="container-fluid p-5">
+    <div class="row justify-content-center">
+        <div class="col-12 d-flex justify-content-center mt-md-0 mt-4">
+            <button id="toggleForm" class="btn btn-dark btn-lg">+ New Post</button>
+        </div>
+    </div>
 </div>
+<script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/js/createPost.js"></script>
+<script src="/js/newPostButton.js"></script>

@@ -1,7 +1,12 @@
 async function newPostFormHandler(event) {
   event.preventDefault();
-  const blogTitle = document.querySelector("#title").value;
-  const blogContent = document.querySelector("#content").value;
+  const blogTitle = document.querySelector("#title").value.trim();
+  const blogContent = document.querySelector("#content").value.trim();
+
+  if (!blogTitle || !blogContent) {
+    $("#errorMessageModal").modal("show");
+    return;
+  }
 
   const data = {
     post_title: blogTitle,
@@ -15,9 +20,11 @@ async function newPostFormHandler(event) {
     },
     body: JSON.stringify(data),
   });
-
+  console.log(response.status);
   if (response.ok) {
-    document.location.replace("/dashboard");
+    $("#myForm").addClass("d-none");
+    $(".togglePosts").removeClass("d-none");
+    $("#toggleForm").text("+ New Post");
   } else {
     alert("Failed to add new Post");
   }

@@ -1,17 +1,17 @@
-document.addEventListener("DOMContentLoaded", function () {
-  var toggleFormButton = document.getElementById("toggleForm");
-  var myForm = document.getElementById("myForm");
-  var myPosts = document.getElementById("togglePosts");
+$(document).ready(function () {
+  var $toggleFormButton = $("#toggleForm");
+  var $myForm = $("#myForm");
+  var $myPosts = $(".togglePosts");
 
-  toggleFormButton.addEventListener("click", function () {
-    if (myForm.classList.contains("d-none")) {
-      myForm.classList.remove("d-none");
-      myPosts.classList.add("d-none");
-      toggleFormButton.textContent = "Back";
+  $toggleFormButton.on("click", function () {
+    if ($myForm.hasClass("d-none")) {
+      $myForm.removeClass("d-none");
+      $myPosts.addClass("d-none");
+      $toggleFormButton.text("Back to Posts");
     } else {
-      myForm.classList.add("d-none");
-      myPosts.classList.remove("d-none");
-      toggleFormButton.textContent = "+ New Post";
+      $myForm.addClass("d-none");
+      $myPosts.removeClass("d-none");
+      $toggleFormButton.text("+ New Post");
     }
   });
 });

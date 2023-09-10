@@ -27,12 +27,20 @@ router.get("/:id", async (req, res) => {
 
 router.post("/addNew", async (req, res) => {
   try {
+    if (!req.session.user_id) {
+      res
+        .status(401)
+        .json({ message: "You need to be logged in to create a post." });
+      return;
+    }
+
     console.log("Incoming Data:", req.body);
     const { post_title, contents } = req.body;
 
     const blogPostData = await BlogPost.create({
       post_title,
       contents,
+      author_id: req.session.user_id,
     });
     console.log("Entered BlogPost Data:", blogPostData);
   } catch (error) {
