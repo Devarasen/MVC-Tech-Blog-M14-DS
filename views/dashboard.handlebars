@@ -1,19 +1,34 @@
 <div>
     <div>
-        <h1>Welcome {{name}}</h1>
+        <h1>Welcome {{name}},</h1>
     </div>
 
     {{#each blogPosts}}
+
     <div class="card my-5 togglePosts">
-        <h5 class="card-header" style="background-color: rgb(104, 4, 4); color: white;">{{this.post_title}}</h5>
-        <p class=" card-header" style="background-color: rgb(165, 28, 28); color: white;">Posted by {{../name}} on
+        <div class="d-flex justify-content-between" style="background-color: rgb(104, 4, 4);">
+            <h5 class=" card-header" style="background-color: rgb(104, 4, 4); color: white;">{{this.post_title}}</h5>
+            <div>
+                <button class="btn btn-secondary" onclick="editPost('{{this.id}}')">Edit</button>
+                <button class="btn btn-danger mx-2" onclick="deletePost('{{this.id}}')">Delete</button>
+            </div>
+        </div>
+        <p class="card-header" style="background-color: rgb(165, 28, 28); color: white;">Posted by {{../name}} on
             {{format_date this.created_date}}</p>
         <div class="card-body">
             {{!-- <h5 class="card-title">Special title treatment</h5> --}}
-            <p class="card-text">{{this.contents}}</p>
+            <p class="card-text d-none">{{this.contents}}</p>
+
+            <textarea type="text" class="form-control" id="content-update" placeholder="Enter content"
+                name="content-update" rows="3">{{this.contents}}</textarea>
+            <div class="py-3">
+                <button type="submit" class="btn btn-secondary mx-2">Confirm Edit</button>
+                <button type="submit" class="btn btn-danger mx-2">Confirm Delete</button>
+            </div>
             {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
         </div>
     </div>
+
     {{/each}}
 
     {{!-- code for modal --}}
