@@ -14,6 +14,7 @@
         <p class="d-none" id="blogPostId">{{blogPostData.id}}</p>
     </div>
 
+
     <div class="card my-5">
         <h5 class="card-header" style="background-color: rgb(187, 187, 187);">Comments:</h5>
 
@@ -21,7 +22,7 @@
         <div class="card-body" style="border-bottom: 1px solid black;">
 
             <p>{{this.comment}}</p>
-            <p>Posted by: {{this.creator.name}} on: {{format_date this.created_date}}</p>
+            <p>- {{this.creator.name}} , {{format_date this.created_date}}</p>
         </div>
         {{/each}}
     </div>

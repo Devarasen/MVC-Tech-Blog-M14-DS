@@ -14,6 +14,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Post request to login
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -45,6 +46,23 @@ router.post("/login", async (req, res) => {
   } catch (error) {
     console.error("Error during login:", error);
     res.status(400).json({ message: "An error occurred" });
+  }
+});
+
+// Post request to sign up
+router.post("/signUp", async (req, res) => {
+  try {
+    const userData = await User.create(req.body);
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      res.status(200).json(userData);
+    });
+  } catch (error) {
+    console.error("Error during sign-up:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
