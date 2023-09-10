@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { BlogPost, User } = require("../models");
+const { BlogPost, User, Comments } = require("../models");
 const attachUserData = require("../utils/userData");
 
 router.use(attachUserData);
@@ -28,7 +28,17 @@ router.get("/", async (req, res) => {
 router.get("/blogPost/:id", async (req, res) => {
   try {
     const blogPostData = await BlogPost.findByPk(req.params.id, {
-      include: [User],
+      include: [
+        User,
+        {
+          model: Comments,
+          as: "comments", // Make sure this alias matches what you've set in the model relationships
+          include: {
+            model: User,
+            as: "creator",
+          },
+        },
+      ],
     });
 
     if (!blogPostData) {

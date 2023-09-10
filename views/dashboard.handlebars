@@ -1,75 +1,77 @@
 <div>
-    <h1>Welcome {{name}}</h1>
-</div>
-
-{{#each blogPosts}}
-<div class="card my-5 togglePosts">
-    <h5 class="card-header">{{this.post_title}}</h5>
-    <p class="card-header">Posted by {{../name}} on {{format_date this.created_date}}</p>
-    <div class="card-body">
-        {{!-- <h5 class="card-title">Special title treatment</h5> --}}
-        <p class="card-text">{{this.contents}}</p>
-        {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+    <div>
+        <h1>Welcome {{name}}</h1>
     </div>
-</div>
-{{/each}}
 
-<div class="modal fade" id="errorMessageModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Error</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                Title/Contents missing. Unable to post.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
+    {{#each blogPosts}}
+    <div class="card my-5 togglePosts">
+        <h5 class="card-header" style="background-color: rgb(104, 4, 4); color: white;">{{this.post_title}}</h5>
+        <p class=" card-header" style="background-color: rgb(165, 28, 28); color: white;">Posted by {{../name}} on
+            {{format_date this.created_date}}</p>
+        <div class="card-body">
+            {{!-- <h5 class="card-title">Special title treatment</h5> --}}
+            <p class="card-text">{{this.contents}}</p>
+            {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
         </div>
     </div>
-</div>
+    {{/each}}
 
-
-<div class="container mt-5 d-none" id="myForm">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-header">
-                    Create New Post
+    {{!-- code for modal --}}
+    <div class="modal fade" id="errorMessageModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Error</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="title">Title :</label>
-                            <input type="text" class="form-control" id="title" placeholder="Enter blog title"
-                                name="title">
-                        </div>
-                        <div class="form-group">
-                            <label for="content">Content :</label>
-                            <textarea type="text" class="form-control" id="content" placeholder="Enter content"
-                                name="content" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-secondary" href="/dashboard">Create Post</button>
-                    </form>
+                <div class="modal-body">
+                    Title/Contents missing. Unable to post.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-</div>
+    {{!-- Create New BlogPost form --}}
+    <div class="container mt-5 d-none" id="myForm">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">
+                        Create New Post
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="title">Title :</label>
+                                <input type="text" class="form-control" id="title" placeholder="Enter blog title"
+                                    name="title">
+                            </div>
+                            <div class="form-group">
+                                <label for="content">Content :</label>
+                                <textarea type="text" class="form-control" id="content" placeholder="Enter content"
+                                    name="content" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-secondary" href="/dashboard">Create Post</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+    </div>
 
-<div class="container-fluid p-5">
-    <div class="row justify-content-center">
-        <div class="col-12 d-flex justify-content-center mt-md-0 mt-4">
-            <button id="toggleForm" class="btn btn-dark btn-lg">+ New Post</button>
+    {{!-- +New Post/Back Buton --}}
+    <div class="container-fluid p-5">
+        <div class="row justify-content-center">
+            <div class="col-12 d-flex justify-content-center mt-md-0 mt-4">
+                <button id="toggleForm" class="btn btn-dark btn-lg">+ New Post</button>
+            </div>
         </div>
     </div>
+
+    <script src="/js/createPost.js" defer></script>
+    <script src="/js/newPostButton.js" defer></script>
 </div>
-<script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="/js/createPost.js"></script>
-<script src="/js/newPostButton.js"></script>

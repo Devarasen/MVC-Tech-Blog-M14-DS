@@ -1,10 +1,10 @@
-const { BlogPost, User } = require("../../models");
+const { BlogPost, User, Comments } = require("../../models");
 const router = require("express").Router();
 
 // Get all BlogPosts
 router.get("/", async (req, res) => {
   try {
-    const blogPostData = await BlogPost.findAll({ include: [User] });
+    const blogPostData = await BlogPost.findAll({ include: [User, Comments] });
     res.status(200).json(blogPostData);
   } catch (error) {
     console.error("Error fetching blogpost:", error);
@@ -43,6 +43,7 @@ router.post("/addNew", async (req, res) => {
       author_id: req.session.user_id,
     });
     console.log("Entered BlogPost Data:", blogPostData);
+    res.status(201).json({ message: "Blog post created successfully!" });
   } catch (error) {
     console.error("Error:", error);
     res.status(400).json(error);

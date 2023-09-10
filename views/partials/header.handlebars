@@ -2,22 +2,23 @@
     <div class="container">
         <ul class="navbar-nav">
             <li class="nav-item px-3">
-                <a class="nav-link p-4 rounded-pill" href="/" style="color: white; border: 3px solid black;">Home</a>
+                <a class="nav-link p-4 rounded-pill" href="/"
+                    style=" background-color: rgb(92, 92, 92); color: white; border: 3px solid black;">Home</a>
             </li>
             <li class="nav-item px-3">
                 <a class="nav-link p-4 rounded-pill" href="/dashboard"
-                    style="color: white; border: 3px solid black;">Dashboard</a>
+                    style="background-color: rgb(92, 92, 92); color: white; border: 3px solid black;">Dashboard</a>
             </li>
             {{#if logged_in}}
             <li class="nav-item px-3">
                 <a class="nav-link p-4 rounded-pill" id="logout-link" href="/"
-                    style="color: white; border: 3px solid black;">Logout</a>
+                    style="background-color: rgb(92, 92, 92); color: white; border: 3px solid black;">Logout</a>
             </li>
             <script src="/js/logout.js"></script>
             {{else}}
             <li class="nav-item px-3">
                 <a class="nav-link p-4 rounded-pill" href="/login"
-                    style="color: white; border: 3px solid black;">Login</a>
+                    style="background-color: rgb(92, 92, 92); color: white; border: 3px solid black;">Login</a>
             </li>
             {{/if}}
         </ul>

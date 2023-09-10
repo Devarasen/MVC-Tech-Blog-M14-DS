@@ -1,53 +1,61 @@
-<div class="card my-5">
-    <h5 class="card-header" style="background-color: rgb(104, 4, 4); color: white;">
-        {{blogPostData.post_title}}</h5>
-    <p5 class="card-header" style="background-color: rgb(165, 28, 28); color: white;">Posted by
-        {{blogPostData.user.name}} on
-        {{format_date
-        blogPostData.created_date}}</p5>
-    <div class="card-body">
-        {{!-- <h5 class="card-title">Special title treatment</h5> --}}
-        <p class="card-text">{{blogPostData.contents}}</p>
-        {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-    </div>
-</div>
-
-<div class="card my-5">
-    <h5 class="card-header">Comments:</h5>
-    <div class="card-body">
-
-        <p>Comment Test</p>
-        <p>Posted by: on: </p>
-    </div>
-</div>
-
-
-{{#if logged_in}}
-
-<div class="card mt-5">
-    <div class="card-header">
-        Add a comment
-    </div>
-    <div class="card-body">
-        <form>
-            <div class="form-group">
-                <label for="content">Content :</label>
-                <textarea type="text" class="form-control" id="content" placeholder="Enter content" name="content"
-                    rows="2"></textarea>
-            </div>
-            <button type="submit" class="btn btn-secondary" href="/dashboard">Submit Comment</button>
-        </form>
-    </div>
-</div>
-
-{{else}}
-
 <div>
-    <p>You are required to login to be able to post comments on blogPosts. The button below will redirect you to the
-        login page</p>
-    <div class="justify-content-center align-items-end mb-5 pb-5">
-        <a href="/login" class="btn btn-primary btn-lg">Login/Sign Up</a>
+    <div class="card my-5">
+        <h5 class="card-header" style="background-color: rgb(104, 4, 4); color: white;">
+            {{blogPostData.post_title}}</h5>
+        <p class="card-header" style="background-color: rgb(165, 28, 28); color: white;">Posted by
+            {{blogPostData.user.name}} on
+            {{format_date
+            blogPostData.created_date}}</p>
+        <div class="card-body">
+            {{!-- <h5 class="card-title">Special title treatment</h5> --}}
+            <p class="card-text">{{blogPostData.contents}}</p>
+            {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+        </div>
+        <p class="d-none" id="blogPostId">{{blogPostData.id}}</p>
     </div>
-</div>
 
-{{/if}}
+    <div class="card my-5">
+        <h5 class="card-header" style="background-color: rgb(187, 187, 187);">Comments:</h5>
+
+        {{#each blogPostData.comments}}
+        <div class="card-body" style="border-bottom: 1px solid black;">
+
+            <p>{{this.comment}}</p>
+            <p>Posted by: {{this.creator.name}} on: {{format_date this.created_date}}</p>
+        </div>
+        {{/each}}
+    </div>
+
+
+    {{#if logged_in}}
+
+    <div class="card mt-5">
+        <div class="card-header" style="background-color: rgb(202, 202, 202);">
+            <h6>Add a comment</h6>
+        </div>
+        <div class=" card-body">
+            <form id="commentForm">
+
+                <div class="form-group">
+                    <label for="content">Content :</label>
+                    <textarea type="text" class="form-control" id="content" placeholder="Enter content" name="content"
+                        rows="2"></textarea>
+                </div>
+                <button type="submit" class="btn btn-secondary" id="submitComment">Submit Comment</button>
+            </form>
+        </div>
+    </div>
+
+    {{else}}
+
+    <div>
+        <p>You are required to login to be able to post comments on blogPosts. The button below will redirect you to the
+            login page</p>
+        <div class=" justify-content-center align-items-end mb-5 pb-5">
+            <a href="/login" class="btn btn-primary btn-lg">Login/Sign Up</a>
+        </div>
+    </div>
+
+    {{/if}}
+    <script src="\js\addComment.js" defer></script>
+</div>
