@@ -17,7 +17,7 @@ I allowed products to have multiple tags and tags to have many products by using
 Heroku deployed link: https://tech-blog-ds-mod16-a30adabc1804.herokuapp.com/
 
 Github Repo: https://github.com/Devarasen/MVC-Tech-Blog-M14-DS
-![Screenshot](./assets/Project%20Screenshot.PNG)
+![Screenshot](./public/assets/Project%20Screenshot.PNG)
 
 ## Table of Contents
 
