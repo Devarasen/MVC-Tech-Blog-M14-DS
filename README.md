@@ -49,8 +49,17 @@ DB_USER='root'
 
 ## Usage
 
+When not logged in:
+- This app allows you to view all posts by users without login verification on the home page. 
+- If you click on a post from the home page you will be directed to a separate page for the selected blogPost. 
+- If you aren't logged in, you wont be given an option to post a comment but will be provided a link to the login page instead.
+- Dashboard link will direct you to login page as well if you aren't logged in.
 
 
+When logged in:
+- If you click on a post from the home page you will be directed to a separate page for the selected blogPost and able to leave a comment.
+- Able to add new posts and delete/edit previous posts from the dashboard page.
+- Able to view all users posts from the dashboard page.
 
 
 
