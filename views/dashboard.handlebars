@@ -17,37 +17,25 @@
             {{format_date this.created_date}}</p>
         <div class="card-body">
             {{!-- <h5 class="card-title">Special title treatment</h5> --}}
-            <p class="card-text d-none">{{this.contents}}</p>
+            <p class="card-text my-4">{{this.contents}}</p>
 
-            <textarea type="text" class="form-control" id="content-update" placeholder="Enter content"
+
+            <textarea type="text" class="form-control d-none" id="content-update" placeholder="Enter content"
                 name="content-update" rows="3">{{this.contents}}</textarea>
             <div class="py-3">
-                <button type="submit" class="btn btn-secondary mx-2">Confirm Edit</button>
-                <button type="submit" class="btn btn-danger mx-2">Confirm Delete</button>
+                <button type="submit" class="btn btn-secondary mx-2 d-none">Confirm Edit</button>
+                <button type="submit" class="btn btn-danger mx-2 d-none">Confirm Delete</button>
+                <button type="submit" class="btn btn-success mx-2 d-none">Back</button>
             </div>
-            {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+
         </div>
     </div>
 
     {{/each}}
 
     {{!-- code for modal --}}
-    <div class="modal fade" id="errorMessageModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Error</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    Title/Contents missing. Unable to post.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{> modal}}
+
 
     {{!-- Create New BlogPost form --}}
     <div class="container mt-5 d-none" id="myForm">
