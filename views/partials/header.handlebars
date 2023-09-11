@@ -1,22 +1,22 @@
 <nav class="navbar navbar-expand-lg p-3" style="background-color: rgb(148, 99, 99); color: white;">
     <div class="container">
-        <ul class="navbar-nav">
-            <li class="nav-item px-3">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item p-1 text-center">
                 <a class="nav-link p-4 rounded-pill" href="/"
                     style=" background-color: rgb(92, 92, 92); color: white; border: 3px solid black;">Home</a>
             </li>
-            <li class="nav-item px-3">
+            <li class="nav-item p-1 text-center">
                 <a class="nav-link p-4 rounded-pill" href="/dashboard"
                     style="background-color: rgb(92, 92, 92); color: white; border: 3px solid black;">Dashboard</a>
             </li>
             {{#if logged_in}}
-            <li class="nav-item px-3">
+            <li class="nav-item p-1 text-center">
                 <a class="nav-link p-4 rounded-pill" id="logout-link" href="#"
                     style="background-color: rgb(92, 92, 92); color: white; border: 3px solid black;">Logout</a>
             </li>
             <script src="/js/logout.js" defer></script>
             {{else}}
-            <li class="nav-item px-3">
+            <li class="nav-item p-1 text-center">
                 <a class="nav-link p-4 rounded-pill" href="/login"
                     style="background-color: rgb(92, 92, 92); color: white; border: 3px solid black;">Login</a>
             </li>
