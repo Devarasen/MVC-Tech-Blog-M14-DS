@@ -50,4 +50,44 @@ router.post("/addNew", async (req, res) => {
   }
 });
 
+router.delete("/edit/:id", async (req, res) => {
+  try {
+    console.log(req.params.id);
+    const blogPostData = await BlogPost.update({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!blogPostData) {
+      res.status(404).json({ message: "No product found with this id!" });
+      return;
+    }
+
+    res.status(200).json(blogPostData);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    console.log(req.params.id);
+    const blogPostData = await BlogPost.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!blogPostData) {
+      res.status(404).json({ message: "No product found with this id!" });
+      return;
+    }
+
+    res.status(200).json(blogPostData);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;
