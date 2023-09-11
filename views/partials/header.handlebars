@@ -11,10 +11,10 @@
             </li>
             {{#if logged_in}}
             <li class="nav-item px-3">
-                <a class="nav-link p-4 rounded-pill" id="logout-link" href="/"
+                <a class="nav-link p-4 rounded-pill" id="logout-link" href="#"
                     style="background-color: rgb(92, 92, 92); color: white; border: 3px solid black;">Logout</a>
             </li>
-            <script src="/js/logout.js"></script>
+            <script src="/js/logout.js" defer></script>
             {{else}}
             <li class="nav-item px-3">
                 <a class="nav-link p-4 rounded-pill" href="/login"
@@ -24,3 +24,6 @@
         </ul>
     </div>
 </nav>
+
+{{> successModal}}
+{{> errorModal}}

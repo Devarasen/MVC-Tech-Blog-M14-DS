@@ -1,9 +1,26 @@
+function displayErrorModal(errorMessage) {
+  const modalBody = document.querySelector("#errorMessagePlaceholder");
+  modalBody.innerText = errorMessage;
+  $("#errorMessageModal").modal("show");
+}
+
+function displaySuccessModal(successMessage) {
+  const modalBody = document.querySelector("#successMessagePlaceholder");
+  modalBody.innerText = successMessage;
+
+  // Add an event listener to the modal's close event
+  $("#successMessageModal").on("hidden.bs.modal", function () {
+    window.location.href = "/";
+  });
+
+  $("#successMessageModal").modal("show");
+}
+
 const loginFormHandler = async (event) => {
   event.preventDefault();
   // Collect values from the login form
   const email = document.querySelector("#email-login").value.trim();
   const password = document.querySelector("#password-login").value.trim();
-  console.log("Sending email and password:", { email, password });
 
   if (email && password) {
     try {
@@ -15,10 +32,9 @@ const loginFormHandler = async (event) => {
       console.log("API Response:", response);
 
       if (response.ok) {
-        console.log(response.statusText);
-        document.location.replace("/");
+        displaySuccessModal("Logged in successfully!");
       } else {
-        alert(response.statusText);
+        displayErrorModal("Log in unsuccessful!");
       }
     } catch (error) {
       console.error("There was an error:", error);
@@ -44,10 +60,9 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      // If successful, redirect the browser to the home page
-      document.location.replace("/");
+      displaySuccessModal("Signed up successfully!");
     } else {
-      alert(response.statusText);
+      displayErrorModal("Sign up unsuccessful!");
     }
   } catch (error) {
     console.error("There was an error during the signup process:", error);

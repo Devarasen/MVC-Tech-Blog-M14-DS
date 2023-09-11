@@ -1,3 +1,21 @@
+function displayErrorModal(errorMessage) {
+  const modalBody = document.querySelector("#errorMessagePlaceholder");
+  modalBody.innerText = errorMessage;
+  $("#errorMessageModal").modal("show");
+}
+
+function displaySuccessModal(successMessage) {
+  const modalBody = document.querySelector("#successMessagePlaceholder");
+  modalBody.innerText = successMessage;
+
+  // Add an event listener to the modal's close event
+  $("#successMessageModal").on("hidden.bs.modal", function () {
+    window.location.href = "/";
+  });
+
+  $("#successMessageModal").modal("show");
+}
+
 const logout = async () => {
   try {
     const response = await fetch("/api/userRoutes/logout", {
@@ -6,9 +24,9 @@ const logout = async () => {
     });
 
     if (response.ok) {
-      document.location.replace("/");
+      displaySuccessModal("Logged out successfully!");
     } else {
-      alert("Logout failed. Please try again.");
+      displayErrorModal("Log out failed. Please try again!");
     }
   } catch (error) {
     console.error("An error occurred during logout:", error);
