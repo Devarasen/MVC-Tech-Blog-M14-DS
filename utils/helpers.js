@@ -5,12 +5,16 @@ module.exports = {
       return "N/A"; // or some default value
     }
     // We use the 'toLocaleTimeString()' method to format the time as H:MM:SS AM/PM
-    return date.toLocaleDateString("en-GB", {
+    const options = {
       day: "2-digit",
       month: "2-digit",
       year: "2-digit",
       hour: "2-digit",
       minute: "2-digit",
-    });
+      timeZoneName: "short",
+    };
+
+    const formattedDate = date.toLocaleDateString("en-AU", options);
+    return formattedDate.replace("GMT", "AEST");
   },
 };
