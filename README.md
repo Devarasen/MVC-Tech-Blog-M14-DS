@@ -36,7 +36,9 @@ Instructions to run the application:
 5.  Add the following to the `.env` file , replacing the values with your own:
 
 DB_NAME='techblog_db'
+
 DB_PASSWORD='password'
+
 DB_USER='root'
 
 6. Run `mysql -u - root -p` to open the MySQL shell.
