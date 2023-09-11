@@ -50,17 +50,21 @@ router.post("/addNew", async (req, res) => {
   }
 });
 
-router.delete("/edit/:id", async (req, res) => {
+router.put("/edit/:id", async (req, res) => {
   try {
     console.log(req.params.id);
-    const blogPostData = await BlogPost.update({
-      where: {
-        id: req.params.id,
+    const blogPostData = await BlogPost.update(
+      {
+        contents: req.body.contents,
       },
-    });
-
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
     if (!blogPostData) {
-      res.status(404).json({ message: "No product found with this id!" });
+      res.status(404).json({ message: "No blogpost found with this id!" });
       return;
     }
 

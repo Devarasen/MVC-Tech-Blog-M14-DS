@@ -38,8 +38,10 @@ async function editPost(event) {
 
   const card = $(this).closest(".card");
 
-  const blogPostId = card.find(".blogPostId");
+  const contentUpdate = card.find(".content-update");
+  const editedContent = contentUpdate.val();
 
+  const blogPostId = card.find(".blogPostId");
   blogPostIdData = blogPostId.text().trim();
 
   console.log("Blog Post ID after trim:", blogPostIdData);
@@ -48,19 +50,24 @@ async function editPost(event) {
     // Send the data to the server using fetch
     const response = await fetch(`/api/blogPostRoutes/edit/${blogPostIdData}`, {
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ contents: editedContent }),
     });
 
     console.log(response.status);
     if (response.ok) {
       location.reload();
-      alert("Blog post deleted successfully!");
+      alert("Blog post edited successfully!");
     } else {
-      alert("Failed to delete blog post");
+      alert("Failed to edit blog post");
     }
   } catch (error) {
-    console.error("Error while deleting the blog post:", error);
+    console.error("Error while editing the blog post:", error);
     alert("There was an error. Please try again.");
   }
 }
 
 $(".confirm-delete").click(deletePost);
+$(".confirm-edit").click(editPost);
