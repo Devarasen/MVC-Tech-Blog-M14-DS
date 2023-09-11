@@ -13,6 +13,8 @@ Heroku deployed link: https://tech-blog-ds-mod16-a30adabc1804.herokuapp.com/
 Github Repo: https://github.com/Devarasen/MVC-Tech-Blog-M14-DS
 
 
+
+
 ![Screenshot](./public/assets/Project%20Screenshot.PNG)
 
 ## Table of Contents
