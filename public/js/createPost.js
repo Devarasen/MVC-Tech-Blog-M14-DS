@@ -4,17 +4,14 @@ async function newPostFormHandler(event) {
   const content = document.querySelector("#content").value.trim();
 
   if (!title || !content) {
-    $("#errorMessageModal").modal("show");
+    displayErrorModal("Tile and/or content missing. Unable to post.");
     return;
   }
-  console.log("test1");
 
   const data = {
     post_title: title,
     contents: content,
   };
-
-  console.log("test1");
 
   try {
     const response = await fetch(`/api/blogPostRoutes/addNew`, {
@@ -24,11 +21,9 @@ async function newPostFormHandler(event) {
       },
       body: JSON.stringify(data),
     });
-    console.log("test2");
 
     if (response.ok) {
-      location.reload();
-      alert("Post added successfully!");
+      displaySuccessModal("Post added successfully!");
       // Optionally redirect or reload the page to show the new post
     } else {
       const responseData = await response.json();
@@ -40,6 +35,24 @@ async function newPostFormHandler(event) {
   } catch (error) {
     console.error("Error while sending request:", error);
     alert("There was an error. Please try again.");
+  }
+
+  function displayErrorModal(errorMessage) {
+    const modalBody = document.querySelector("#errorMessagePlaceholder");
+    modalBody.innerText = errorMessage;
+    $("#errorMessageModal").modal("show");
+  }
+
+  function displaySuccessModal(successMessage) {
+    const modalBody = document.querySelector("#successMessagePlaceholder");
+    modalBody.innerText = successMessage;
+
+    // Add an event listener to the modal's close event
+    $("#successMessageModal").on("hidden.bs.modal", function () {
+      location.reload();
+    });
+
+    $("#successMessageModal").modal("show");
   }
 }
 

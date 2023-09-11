@@ -1,8 +1,5 @@
-console.log("script loaded for comment form");
-
 async function addCommentHandler(event) {
   event.preventDefault();
-  console.log("script loaded for comment form");
 
   const commentElement = document.querySelector("#content");
   const blogPostElement = document.querySelector("#blogPostId");
@@ -13,10 +10,10 @@ async function addCommentHandler(event) {
   // Retrieve the content and blogPostId from the form
   const commentContent = document.querySelector("#content").value.trim();
   const blogPostId = document.querySelector("#blogPostId").textContent.trim();
-  console.log("script loaded for comment form");
+
   // Check if the content is provided
   if (!commentContent) {
-    alert("No comment to submit");
+    displayErrorModal("Content missing. Unable to post.");
     return;
   }
 
@@ -38,14 +35,31 @@ async function addCommentHandler(event) {
 
     console.log(response.status);
     if (response.ok) {
-      location.reload();
-      alert("Comment added successfully!");
+      displaySuccessModal("Comment added successfully!");
     } else {
-      alert("Failed to add comment");
+      displayErrorModal("Failed to add comment");
     }
   } catch (error) {
     console.error("Error while adding the comment:", error);
-    alert("There was an error. Please try again.");
+    displayErrorModal("There was an error. Please try again.");
+  }
+
+  function displayErrorModal(errorMessage) {
+    const modalBody = document.querySelector("#errorMessagePlaceholder");
+    modalBody.innerText = errorMessage;
+    $("#errorMessageModal").modal("show");
+  }
+
+  function displaySuccessModal(successMessage) {
+    const modalBody = document.querySelector("#successMessagePlaceholder");
+    modalBody.innerText = successMessage;
+
+    // Add an event listener to the modal's close event
+    $("#successMessageModal").on("hidden.bs.modal", function () {
+      location.reload();
+    });
+
+    $("#successMessageModal").modal("show");
   }
 }
 

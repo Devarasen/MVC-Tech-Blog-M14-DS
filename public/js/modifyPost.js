@@ -1,3 +1,21 @@
+function displayErrorModal(errorMessage) {
+  const modalBody = document.querySelector("#errorMessagePlaceholder");
+  modalBody.innerText = errorMessage;
+  $("#errorMessageModal").modal("show");
+}
+
+function displaySuccessModal(successMessage) {
+  const modalBody = document.querySelector("#successMessagePlaceholder");
+  modalBody.innerText = successMessage;
+
+  // Add an event listener to the modal's close event
+  $("#successMessageModal").on("hidden.bs.modal", function () {
+    location.reload();
+  });
+
+  $("#successMessageModal").modal("show");
+}
+
 async function deletePost(event) {
   event.preventDefault();
   console.log("script loaded for delete");
@@ -6,7 +24,7 @@ async function deletePost(event) {
 
   const blogPostId = card.find(".blogPostId");
 
-  blogPostIdData = blogPostId.text().trim();
+  const blogPostIdData = blogPostId.text().trim();
 
   console.log("Blog Post ID after trim:", blogPostIdData);
 
@@ -21,10 +39,9 @@ async function deletePost(event) {
 
     console.log(response.status);
     if (response.ok) {
-      location.reload();
-      alert("Blog post deleted successfully!");
+      displaySuccessModal("Blog post deleted successfully!");
     } else {
-      alert("Failed to delete blog post");
+      displayErrorModal("Failed to delete blog post");
     }
   } catch (error) {
     console.error("Error while deleting the blog post:", error);
@@ -42,7 +59,7 @@ async function editPost(event) {
   const editedContent = contentUpdate.val();
 
   const blogPostId = card.find(".blogPostId");
-  blogPostIdData = blogPostId.text().trim();
+  const blogPostIdData = blogPostId.text().trim();
 
   console.log("Blog Post ID after trim:", blogPostIdData);
 
@@ -58,10 +75,9 @@ async function editPost(event) {
 
     console.log(response.status);
     if (response.ok) {
-      location.reload();
-      alert("Blog post edited successfully!");
+      displaySuccessModal("Blog post edited successfully!");
     } else {
-      alert("Failed to edit blog post");
+      displayErrorModal("Failed to delete blog post");
     }
   } catch (error) {
     console.error("Error while editing the blog post:", error);
