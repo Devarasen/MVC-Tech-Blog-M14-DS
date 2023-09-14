@@ -52,6 +52,11 @@ const signupFormHandler = async (event) => {
   const email = document.querySelector("#email-signup").value.trim();
   const password = document.querySelector("#password-signup").value.trim();
 
+  if (password.length < 8) {
+    displayErrorModal("Password should be at least 8 characters long!");
+    return;
+  }
+
   try {
     const response = await fetch("/api/userRoutes/signUp", {
       method: "POST",
